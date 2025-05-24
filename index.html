@@ -45,30 +45,26 @@
             return;
         }
 
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("attendance", response);
+
         fetch("https://script.google.com/macros/s/AKfycbyOOtQv6QNyU6Mm0v0-PhCDVBX-aIMjnCULUjPM0ibZww9DY8MgK2nVRrpirIbjwefc/exec", {
           method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            name: name,
-            attendance: response
-          })
+          body: formData
         })
         .then(res => res.json())
         .then(data => {
           if (data.result === "success") {
-            document.getElementById("status").textContent = "Ответ отправлен!";
+            status.textContent = "Ответ отправлен!";
           } else {
-            document.getElementById("status").textContent = "Произошла ошибка.";
+            status.textContent = "Произошла ошибка.";
           }
         })
         .catch(err => {
-          document.getElementById("status").textContent = "Ошибка соединения.";
+          status.textContent = "Ошибка соединения.";
           console.error(err);
         });
-
     }
 </script>
 </body>
