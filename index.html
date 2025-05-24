@@ -46,15 +46,28 @@
         }
 
         fetch("https://script.google.com/macros/s/AKfycbyOOtQv6QNyU6Mm0v0-PhCDVBX-aIMjnCULUjPM0ibZww9DY8MgK2nVRrpirIbjwefc/exec", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `name=${encodeURIComponent(name)}&response=${encodeURIComponent(response)}`
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: name,
+            attendance: response
+          })
         })
-            .then(res => res.ok ? "Ответ отправлен!" : "Ошибка при отправке.")
-            .then(msg => status.textContent = msg)
-            .catch(() => status.textContent = "Произошла ошибка. Попробуйте снова.");
+        .then(res => res.json())
+        .then(data => {
+          if (data.result === "success") {
+            document.getElementById("status").textContent = "Ответ отправлен!";
+          } else {
+            document.getElementById("status").textContent = "Произошла ошибка.";
+          }
+        })
+        .catch(err => {
+          document.getElementById("status").textContent = "Ошибка соединения.";
+          console.error(err);
+        });
+
     }
 </script>
 </body>
