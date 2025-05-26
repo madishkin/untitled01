@@ -75,10 +75,11 @@
                 font-size: 5px;
                 font-weight: 400;
                 margin-bottom: 0;
-                text-shadow: 2px 2px 4px rgb(18 236 0 / 50%);
+                text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
                 letter-spacing: 2px;
-                margin-top: 40%;
-                color: #ffffff;
+                margin-top: 90%;
+                color: #5b9959;
+                margin-left: -30%
             }
 
             .hero-title2     {
@@ -86,22 +87,22 @@
                 font-size: 3rem;
                 font-weight: 400;
                 margin-bottom: 0;
-                text-shadow: 2px 2px 4px rgb(18 236 0 / 50%);
+                text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);;
                 letter-spacing: 2px;
                 position: relative;
                 top: -40px;
-                color: #ffffff;
+                color: #5b9959;
 
             }
 
             .hero-subtitle {
                 font-size: 1.2rem;
                 font-weight: 300;
-                text-shadow: 2px 2px 4px rgb(18 236 0 / 50%);
+                text-shadow: 2px 2px 4px rgb(255 255 255 / 50%);
                 margin-bottom: 30px;
                 position: relative;
                 top: -20px;
-                color: #ffffff;
+                color: #5b9959;
             }
 
             .scroll-indicator {
@@ -664,7 +665,7 @@
             /* Mobile optimizations */
             @media (max-width: 1000px) {
                 .hero-title {
-                    font-size: 7rem;
+                    font-size: 6rem;
                 }
 
                 .hero-subtitle {
@@ -826,7 +827,7 @@
             <source src="music/music.mp3" type="audio/mp3">
         </audio>
 
-        <button id="music-toggle" onclick="startMusic()">🎵</button>
+        <button id="music-toggle" onclick="startMusic()">Әуен</button>
 
         <!-- RSVP Form -->
         <div class="form-section">
@@ -940,7 +941,7 @@
                     musicBtn.textContent = "⏸";
                 } else {
                     audio.pause();
-                    musicBtn.textContent = "🎵";
+                    musicBtn.textContent = "Әуен";
                 }
             }
 
