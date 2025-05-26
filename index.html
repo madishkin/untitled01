@@ -53,7 +53,7 @@
             }
 
             .hero-section {
-                height: 100svh;
+                height: 100vh;
                 background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('images/hero.jpeg');
                 background-size: cover;
                 background-position: center;
@@ -731,29 +731,30 @@
             .ornament-side.right {
                 background-image: url('images/ornamentright.png');
             }
-            #music-toggle {
-                position: fixed;
-                bottom: 30px;
-                right: 30px;
-                background: #d4af37;
-                color: white;
-                border: none;
-                border-radius: 30px;
-                padding: 14px 24px;
-                font-size: 1rem;
-                font-weight: 500;
-                cursor: pointer;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                transition: background 0.3s ease, transform 0.2s ease;
-                z-index: 10;
-                font-family: 'Inter', sans-serif;
-            }
+            @media (max-width: 768px) {
+                #music-toggle {
+                    position: fixed;
+                    bottom: 30px;
+                    right: 10px;
+                    background: #d4af37;
+                    color: white;
+                    border: none;
+                    border-radius: 30px;
+                    padding: 10px 16px;
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    cursor: pointer;
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                    transition: background 0.3s ease, transform 0.2s ease;
+                    z-index: 10;
+                    font-family: 'Inter', sans-serif;
+                }
 
-            #music-toggle:hover {
-                background: #b8941f;
-                transform: scale(1.05);
+                #music-toggle:hover {
+                    background: #b8941f;
+                    transform: scale(1.05);
+                }
             }
-
         </style>
     </head>
     <body>
@@ -822,7 +823,7 @@
         </div>
         <div class="ornament-center-custom"></div>
         <audio id="bg-music" loop>
-            <source src='music/music.mp3' type="audio/mp3">
+            <source src="music/music.mp3" type="audio/mp3">
         </audio>
 
         <button id="music-toggle" onclick="startMusic()">🎵</button>
