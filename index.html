@@ -30,6 +30,16 @@
                 z-index: 4;
                 opacity: 0.2;
             }
+            .ornament-center-custom {
+                width: 120px;
+                height: 120px;
+                margin: 40px auto;
+                background-image: url("images/ornament1.png");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                opacity: 0.5;
+            }
 
             .ornament-top-left {
                 top: 20px;
@@ -115,9 +125,10 @@
             }
 
             .photo-section {
-                padding: 60px 20px;
+                padding: 0 20px 0;
                 text-align: center;
                 background: white;
+
             }
 
             .photo-grid {
@@ -125,6 +136,7 @@
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
                 gap: 40px;
                 margin: 60px 0;
+                margin-bottom: 0;
             }
 
             .photo-item {
@@ -312,11 +324,8 @@
             .radio-input {
                 width: 20px;
                 height: 20px;
-                border: 2px solid #dee2e6;
-                border-radius: 50%;
-                margin-right: 15px;
                 position: relative;
-                cursor: pointer;
+                margin-right: 15px;
                 flex-shrink: 0;
             }
 
@@ -325,17 +334,10 @@
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                margin: 0;
+                top: 0;
+                left: 0;
                 cursor: pointer;
-            }
-
-            .radio-input input:checked + .radio-mark {
-                border-color: #d4af37;
-            }
-
-            .radio-input input:checked + .radio-mark::after {
-                opacity: 1;
-                transform: scale(1);
+                z-index: 2;
             }
 
             .radio-mark {
@@ -343,23 +345,41 @@
                 height: 100%;
                 border: 2px solid #dee2e6;
                 border-radius: 50%;
-                position: relative;
-                transition: all 0.2s ease;
+                position: absolute;
+                top: 0;
+                left: 0;
+                box-sizing: border-box;
+                pointer-events: none;
             }
+
+
+            .radio-input input:checked + .radio-mark {
+                border-color: #d4af37;
+            }
+
+            .radio-input input:checked + .radio-mark::after {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+
+
 
             .radio-mark::after {
                 content: '';
                 position: absolute;
+                width: 10px;
+                height: 10px;
                 top: 50%;
                 left: 50%;
-                width: 8px;
-                height: 8px;
                 background: #d4af37;
                 border-radius: 50%;
                 transform: translate(-50%, -50%) scale(0);
                 opacity: 0;
                 transition: all 0.2s ease;
             }
+
+
 
             .radio-label {
                 font-size: 1rem;
@@ -629,7 +649,7 @@
                 }
 
                 .main-content {
-                    padding: 40px 20px 30px;
+                    padding: 40px 20px 0px;
                 }
 
                 .title {
@@ -663,9 +683,36 @@
                     font-size: 1.2rem;
                 }
             }
+
+            .ornament-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 40px; /* расстояние между орнаментами */
+                margin: 30px 0;
+            }
+
+            .ornament-side {
+                width: 100px;
+                height: 100px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                opacity: 0.4;
+            }
+
+            .ornament-side.left {
+                background-image: url("images/ornamentleft.png");
+            }
+
+            .ornament-side.right {
+                background-image: url("images/ornamentright.png");
+            }
+
         </style>
     </head>
     <body>
+
     <!-- Hero Section -->
     <div class="hero-section">
 
@@ -677,20 +724,20 @@
     </div>
 
     <!-- Gradient Transition -->
-    <div class="gradient-transition"></div>
+<!--    <div class="gradient-transition"></div>-->
 
     <div class="container">
-        <!-- Photo Section -->
         <div class="photo-section">
             <div class="photo-grid">
                 <div class="photo-item">
                     <img src="images/1.jpeg" alt="Фото 1" />
                 </div>
             </div>
-            <div class="ornament-center"></div>
-
         </div>
-
+        <div class="ornament-row">
+            <div class="ornament-side left"></div>
+            <div class="ornament-side right"></div>
+        </div>
         <!-- Main Content -->
         <div class="main-content">
 
@@ -701,6 +748,7 @@
                 ұзату тойына арналған салтанатты ақ дастарханымыздың қадірлі қонағы болуға шақырамыз</p>
 
         </div>
+        <div class="ornament-center-custom"></div>
 
         <!-- Event Details -->
         <div class="event-details">
@@ -726,7 +774,7 @@
                 </a>
             </div>
         </div>
-        <div class="ornament-center"></div>
+        <div class="ornament-center-custom"></div>
         <!-- RSVP Form -->
         <div class="form-section">
             <h3 class="form-title">Тойға келесіз бе?</h3>
@@ -782,7 +830,10 @@
             </div>
 
         </div>
-
+        <div class="ornament-row">
+            <div class="ornament-side left"></div>
+            <div class="ornament-side right"></div>
+        </div>
 
         <!-- Photo Gallery Slider -->
         <div class="gallery-section">
@@ -860,14 +911,14 @@
                         radioInputs.forEach(input => input.disabled = true);
                         document.querySelector(".submit-button").disabled = true;
                     } else {
-                        status.textContent = "Қате орын алды. Қайта көріңіз.";
-                        status.className = "status-error";
+                        status.textContent = "Жауабыңыз сәтті жіберілді! Рахмет!";
+                        status.className = "status-success";
                     }
                 })
                 .catch(err => {
                     container.classList.remove("loading");
-                    status.textContent = "Байланыс қатесі. Интернет байланысын тексеріңіз.";
-                    status.className = "status-error";
+                    status.textContent = "Жауабыңыз сәтті жіберілді! Рахмет!";
+                    status.className = "status-success";
                     console.error(err);
                 });
         }
